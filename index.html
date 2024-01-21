@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="appOne">
+      <tag></tag>
+    </div>
+    <div id="appTwo"></div>
+
+    <script>
+      const { createApp } = Vue;
+
+      const icerik = {
+        template: `<p>Ben Eleman Tag'inin içerisiyim. {{name}}</p>
+                   <button v-on:click="changeName">İsmi Değiştir</button>`,
+        // "Template", bir programın veya web uygulamasının arayüzünü düzenleyen, genellikle HTML veya başka bir işaretleme dili içeren bir yapıdır.
+        data() {
+          return {
+            name: "Adnan Ziyagil",
+            val: false,
+          };
+        },
+        methods: {
+          changeName: function () {
+            this.val = !this.val;
+            if (this.val === true) {
+              this.name = "Selim Can PEKER";
+            } else {
+              this.name = "Adnan Ziyagil";
+            }
+          },
+        },
+      };
+
+      const one = createApp({
+        components: {
+          "tag": icerik
+        },
+      }).mount("#appOne");
+
+      // `component` fonksiyonu, Vue.js uygulamasına yeni bir bileşen eklemek (HTML etiketi gibi) ve bu bileşeni tanımlayan şablon ve veri bilgilerini içeren bir nesneyi belirtmek için kullanılır.
+
+      const two = createApp({}).mount("#appTwo");
+    </script>
+  </body>
+</html>
